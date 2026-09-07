@@ -128,20 +128,21 @@ TicTacToe Ai Project/
 
 ### 4.3 Vercel Deployment
 
-1. **Option A: Vercel CLI Deployment**
-   - Install Vercel CLI globally: `npm i -g vercel`
-   - Run deployment from `frontend/`:
+Since the Next.js web application resides in the `frontend/` directory, Vercel requires the **Root Directory** setting to be configured to `frontend`.
+
+1. **Vercel Dashboard (GitHub Integration)**
+   - Import your repository on [Vercel Dashboard](https://vercel.com/new).
+   - Go to **Project Settings** -> **General** -> **Root Directory**.
+   - Set **Root Directory** to `frontend`.
+   - Vercel will automatically detect **Next.js**, set `npm install` and `npm run build`, and deploy successfully.
+   - If a build previously failed with *"No Next.js version detected"*, go to **Deployments** -> select the latest deployment -> click **Redeploy**.
+
+2. **Vercel CLI**
+   - Run deployment directly from `frontend/`:
      ```bash
      cd frontend
-     vercel
+     npx vercel
      ```
-
-2. **Option B: Vercel Dashboard (GitHub Integration)**
-   - Import your repository on [Vercel Dashboard](https://vercel.com/new).
-   - In the **Project Settings**:
-     - Set **Root Directory** to `frontend` (or leave as root with the included [`vercel.json`](file:///d:/Programming/CS%20Projects/TicTacToe%20Ai%20Project/vercel.json)).
-     - Framework Preset will automatically detect **Next.js**.
-   - Click **Deploy**.
 
 ---
 
