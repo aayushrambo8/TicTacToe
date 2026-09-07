@@ -2,13 +2,17 @@
 
 **Course**: Artificial Intelligence Laboratory (Semester 5)  
 **Domain**: Adversarial Search & Game Theory  
-**Implementation**: Python 3.x  
+**Stack**: Next.js 15 (TypeScript + Tailwind CSS) & Pure Python 3.x  
 
 ---
 
 ## 1. Abstract
 
 This repository presents an implementation of an optimal decision-making agent for the game of Tic-Tac-Toe. The agent utilizes the **Minimax adversarial search algorithm** enhanced with **Alpha-Beta Pruning** to evaluate game trees and select optimal moves. In a two-player, zero-sum, perfect-information game setting, this theoretical foundation guarantees that the AI agent plays deterministically optimal moves, ensuring it can never be defeated.
+
+The repository is structured into two decoupled tiers:
+- **`frontend/`**: Web application built exclusively with **Next.js (App Router)**, **TypeScript**, Tailwind CSS, and Web Audio API synthesis.
+- **`backend/`**: Pure **Python** AI engine and CLI (`game.py`, `ai.py`, `main.py`).
 
 ---
 
@@ -47,58 +51,77 @@ During depth-first traversal, if at any node $\beta \le \alpha$, the subtree bel
 
 ---
 
-## 3. System Architecture and Implementation
-
-### 3.1 Board Indexing and State Representation
-The $3 \times 3$ game board is represented internally as a 1D list of length 9 containing character values (`'X'`, `'O'`, or `' '`). The command-line user interface maps user inputs (1 through 9) to array indices (0 through 8) matching standard numeric keypad indexing:
+## 3. Project Architecture
 
 ```
- 1 | 2 | 3
------------
- 4 | 5 | 6
------------
- 7 | 8 | 9
+TicTacToe Ai Project/
+├── frontend/                     # Next.js 15 + TypeScript Web Frontend
+│   ├── app/                      # App Router (layout.tsx, page.tsx, globals.css)
+│   ├── components/               # Neo-Brutalist UI Components (Header, Board, Status, Score, Modal)
+│   ├── logic/                    # Minimax AI Engine (minimax.ts)
+│   ├── utils/                    # Web Audio API Sound Synthesizer (sound.ts)
+│   ├── package.json              # Next.js dependencies
+│   └── tsconfig.json             # TypeScript configuration
+│
+├── backend/                      # Pure Python AI Engine & CLI
+│   ├── game.py                   # Game rules & winner checks
+│   ├── ai.py                     # Recursive Minimax with Alpha-Beta Pruning
+│   └── main.py                   # Interactive Python CLI game interface
+│
+└── README.md                     # Project documentation
 ```
 
-### 3.2 Key Modules and Functions
+### 3.1 Key Modules
 
-The implementation in [`TickTacToe.py`](file:///d:/College%20Material/AI%20Lab%20Sem%205/Project/TickTacToe.py) is modularized into several core routines:
+#### Frontend (`frontend/`)
+- **[`frontend/app/page.tsx`](file:///d:/Programming/CS%20Projects/TicTacToe%20Ai%20Project/frontend/app/page.tsx)**: Main Next.js page assembling turn state, coin flip, scoreboard, and settings.
+- **[`frontend/logic/minimax.ts`](file:///d:/Programming/CS%20Projects/TicTacToe%20Ai%20Project/frontend/logic/minimax.ts)**: Client-side Minimax AI decision tree engine supporting Unbeatable, Tactical, and Casual modes.
+- **[`frontend/utils/sound.ts`](file:///d:/Programming/CS%20Projects/TicTacToe%20Ai%20Project/frontend/utils/sound.ts)**: Zero-dependency Web Audio API sound synthesizer for tactile pop, stamp, win, and draw effects.
 
-- **[`minimax(board, depth, is_ai, alpha, beta)`](file:///d:/College%20Material/AI%20Lab%20Sem%205/Project/TickTacToe.py#L28-L56)**  
-  Executes recursive game-tree traversal with alpha-beta bounds tracking, returning a tuple of `(best_score, best_move)`.
-  
-- **[`check_winner(board, player)`](file:///d:/College%20Material/AI%20Lab%20Sem%205/Project/TickTacToe.py#L20-L21)**  
-  Evaluates 8 terminal win conditions (3 horizontal rows, 3 vertical columns, and 2 diagonals) using the global `WIN_COMBOS` tuple.
-
-- **[`available_moves(board)`](file:///d:/College%20Material/AI%20Lab%20Sem%205/Project/TickTacToe.py#L24-L25)**  
-  Returns a list of unassigned array indices representing permissible state transitions.
-
-- **[`print_board(board)`](file:///d:/College%20Material/AI%20Lab%20Sem%205/Project/TickTacToe.py#L11-L17)**  
-  Formats and outputs the 3x3 game grid to stdout.
-
-- **[`get_human_move(board)`](file:///d:/College%20Material/AI%20Lab%20Sem%205/Project/TickTacToe.py#L59-L67)**  
-  Handles terminal input parsing, type checking, bounds validation, and conflict checking against occupied positions.
-
-- **[`play_game()`](file:///d:/College%20Material/AI%20Lab%20Sem%205/Project/TickTacToe.py#L70-L106)**  
-  Main game execution loop managing turn swaps and game end conditions.
+#### Backend (`backend/`)
+- **[`backend/game.py`](file:///d:/Programming/CS%20Projects/TicTacToe%20Ai%20Project/backend/game.py)**: Core constants (`EMPTY`, `WIN_COMBOS`) and evaluation helpers (`check_winner`, `available_moves`).
+- **[`backend/ai.py`](file:///d:/Programming/CS%20Projects/TicTacToe%20Ai%20Project/backend/ai.py)**: Recursive Minimax with Alpha-Beta pruning algorithm.
+- **[`backend/main.py`](file:///d:/Programming/CS%20Projects/TicTacToe%20Ai%20Project/backend/main.py)**: Interactive command-line terminal interface for playing against the Python AI agent.
 
 ---
 
 ## 4. Operational Instructions
 
-### 4.1 Prerequisites
-- Python 3.6 or higher environment.
+### 4.1 Next.js Web Frontend Execution
 
-### 4.2 Execution Steps
-
-1. Launch the terminal and navigate to the project directory:
+1. Navigate to the `frontend` directory:
    ```bash
-   cd "Project"
+   cd frontend
    ```
 
-2. Execute the Python module:
+2. Install dependencies (if not already installed):
    ```bash
-   python TickTacToe.py
+   npm install
+   ```
+
+3. Launch the Next.js development server:
+   ```bash
+   npm run dev
+   ```
+   Open **[http://localhost:3000](http://localhost:3000)** in your browser.
+
+4. Build production bundle:
+   ```bash
+   npm run build
+   ```
+
+---
+
+### 4.2 Pure Python Backend Execution
+
+1. Navigate to the `backend` directory:
+   ```bash
+   cd backend
+   ```
+
+2. Execute the CLI game loop:
+   ```bash
+   python main.py
    ```
 
 ---
@@ -107,7 +130,7 @@ The implementation in [`TickTacToe.py`](file:///d:/College%20Material/AI%20Lab%2
 
 ### 5.1 Game Outcome Properties
 Due to the game-theoretic optimality of the Minimax decision rule:
-1. **Against an optimal opponent**: The game guarantees a outcome of a draw (`0` utility).
+1. **Against an optimal opponent**: The game guarantees an outcome of a draw (`0` utility).
 2. **Against a suboptimal opponent**: The AI exploits suboptimal player decisions to secure a win (`+10 - d` utility).
 
 ### 5.2 Efficiency Verification
@@ -119,4 +142,3 @@ Alpha-Beta Pruning significantly decreases the number of evaluated nodes compare
 
 1. Russell, S., & Norvig, P. (2020). *Artificial Intelligence: A Modern Approach* (4th ed.). Pearson. (Chapter 5: Adversarial Search and Games).
 2. Nilsson, N. J. (2014). *Principles of Artificial Intelligence*. Morgan Kaufmann.
-# TicTacToe

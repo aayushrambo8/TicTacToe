@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;900&family=Barlow+Condensed:wght@400;500;600;700;800&family=Share+Tech+Mono&display=swap');
+@import "tailwindcss";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@theme inline {
+  --color-background: #F4EFE4;
+  --color-foreground: #1A1209;
+  --color-card: #FFFDF5;
+  --color-primary: #D42B2B;
+  --color-secondary: #1B3FBF;
+  --color-accent: #F0C030;
+  --color-muted: #E8E2D5;
+  --color-border: #1A1209;
+
+  --font-display: 'Big Shoulders Display', sans-serif;
+  --font-body: 'Barlow Condensed', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+}
+
+body {
+  background-color: #F4EFE4;
+  color: #1A1209;
+  font-family: 'Barlow Condensed', sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.font-display {
+  font-family: 'Big Shoulders Display', sans-serif;
+}
+
+.font-body {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+.font-mono {
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.cell {
+  cursor: pointer;
+  background: #FFFDF5;
+  border: 3px solid #1A1209;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  position: relative;
+  aspect-ratio: 1;
+  box-shadow: 2px 2px 0 #1A1209;
+}
+
+.cell:hover:not(.taken) {
+  background: #E8E2D5;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #1A1209;
+}
+
+.cell.taken {
+  cursor: default;
+}
+
+.cell.winning {
+  background: #F0C030;
+  animation: pulse-win 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-win {
+  0% {
+    background: #F0C030;
+    transform: scale(1);
+  }
+  100% {
+    background: #FFE485;
+    transform: scale(1.02);
+  }
+}
+
+.stamp-btn {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 3px solid #1A1209;
+  background: #D42B2B;
+  color: #FFFDF5;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.1s ease;
+  box-shadow: 4px 4px 0 #1A1209;
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.stamp-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #1A1209;
+}
+
+.stamp-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #1A1209;
+}
+
+.stamp-btn-secondary {
+  background: #1B3FBF;
+  color: #FFFDF5;
+}
+
+.stamp-btn-secondary:hover {
+  background: #284ED8;
+}
+
+.stamp-btn-neutral {
+  background: #FFFDF5;
+  color: #1A1209;
+}
+
+.stamp-btn-neutral:hover {
+  background: #E8E2D5;
+}
+
+.status-bar {
+  border-top: 3px solid #1A1209;
+  border-bottom: 3px solid #1A1209;
+  background: #FFFDF5;
+  padding: 10px 16px;
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow: 0 4px 0 rgba(26, 18, 9, 0.1);
+}
+
+.brutalist-card {
+  background: #FFFDF5;
+  border: 3px solid #1A1209;
+  box-shadow: 6px 6px 0 #1A1209;
+}
+
+.badge-brutalist {
+  border: 2px solid #1A1209;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  padding: 2px 8px;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 0 #1A1209;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
