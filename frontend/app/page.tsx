@@ -252,6 +252,10 @@ export default function Home() {
       {/* Footer credits */}
       <footer className="w-full max-w-md mx-auto text-center font-mono text-xs text-[#1A1209]/60 border-t-2 border-[#1A1209]/20 pt-3 mt-4">
         Next.js App Router • Deterministically Optimal Minimax Algorithm
+        <br />
+        <a href="https://github.com/aayushrambo8" target="_blank" rel="noopener noreferrer" className="hover:text-[#1A1209] transition-colors underline decoration-dotted underline-offset-2">
+          GitHub Profile
+        </a>
       </footer>
 
       {/* Game Setup Modal */}
